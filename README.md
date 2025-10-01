@@ -66,10 +66,10 @@ These examples are pulled directly from the `examples/make-meme.js` example.
 
 You can pass in any of these layouts to the `layout` argument to change how the image is rendered. The main reason for this is to change how the text is rendered onto the image. For example, `classic` is rendered on top/bottom in the center, while `comparison` is rendered on top/bottom on the right side of the image as these are some of the more popular types of meme layouts.
 
-| Template     | Example                                                                           | Usage                  |
-| ------------ | --------------------------------------------------------------------------------- | ---------------------- |
-| `classic`    | <div align="center"><img width="75%" src="layouts/SpongebobTemplate.jpg" /></div> | `layout: "classic"`    |
-| `comparison` | <div align="center"><img width="75%" src="layouts/WojackTemplate.jpg" /></div>    | `layout: "comparison"` |
+| Layout       | Example                                                                           |
+| ------------ | --------------------------------------------------------------------------------- |
+| `classic`    | <div align="center"><img width="70%" src="layouts/SpongebobTemplate.jpg" /></div> |
+| `comparison` | <div align="center"><img width="70%" src="layouts/WojackTemplate.jpg" /></div>    |
 
 > [!NOTE]
 > If your image is blurry or heavily pixelated in the terminal, this is due to the underlying `terminal-image` library. I plan to eventually look into improved visuals for terminals outside of iTerm2, but don't worry, this does not affect the actual image quality if you export it.
