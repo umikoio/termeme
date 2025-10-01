@@ -23,7 +23,7 @@ npm i --global termeme
 You'll find examples under the `examples/` directory, but if you just want to plug-and-play, here's a minimal blank example:
 
 ```javascript
-import TerminalMeme from "termeme"
+import { TerminalMeme } from "termeme"
 
 const { meme } = await TerminalMeme({
     input: "",
