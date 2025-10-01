@@ -1,5 +1,5 @@
 <div align="center">
-  <img width="40%" src="assets/logo.jpg" />
+  <img width="45%" src="assets/logo.jpg" />
   <h1>Termeme</h1>
   <p>Create memes directly in your terminal!</p>
 </div>
@@ -55,8 +55,8 @@ You can pass in any of these templates to the `template` argument to change how 
 
 | Template     | Example                                        |
 | ------------ | ---------------------------------------------- |
-| `classic`    | <img src= "templates/SpongebobTemplate.jpg" /> |
-| `comparison` | <img src= "templates/WojackTemplate.jpg" />    |
+| `classic`    | <img width="50%" src="templates/SpongebobTemplate.jpg" /> |
+| `comparison` | <img width="50%" src="templates/WojackTemplate.jpg" />    |
 
 > [!NOTE]
 > If your image is blurry or heavily pixelated in the terminal, this is due to the underlying `terminal-image` library. I plan to eventually look into improved visuals for terminals outside of iTerm2, but don't worry, this does not affect the actual image quality if you export it.
