@@ -39,23 +39,26 @@ console.log(meme)
 All options in the library are also available via the CLI. This example shows the `examples/make-meme.js` in CLI form:
 
 ```bash
-termeme --input "layouts/WojackTemplate.jpg" --top-text "Generating memes" --bottom-text "It's not in a terminal..." --layout "comparison" --save-img "wojackmeme_termeme.jpg" --stroke 4 --font-family "Fira Code, Arial" --font-color "#FFFFFF" --stroke-color "#000000" --font-size 0.05
+termeme --input "layouts/WojackTemplate.jpg" \
+--top-text "Generating memes" --bottom-text "It's not in a terminal..." \
+--layout "comparison" --save-img "wojackmeme_termeme.jpg" --stroke 4 \
+--font-family "Fira Code, Arial" --font-color "#FFFFFF" --stroke-color "#000000" --font-size 0.05
 ```
 
 Beyond that, here's an all-inclusive list of the available options to customize your dream meme:
 
-| Option                 | Description                                                                               | Example                        |
-| ---------------------- | ----------------------------------------------------------------------------------------- | ------------------------------ |
-| `--input`, `-i`        | Provide the source image for the meme                                                     | "./layouts/WojackTemplate.jpg" |
-| `--topText`, `-t`      | The text to display at the top of your meme                                               | "Generating memes!"            |
-| `--bottomText`, `-b`   | The text to display at the bottom of your meme                                            | "It's not in a terminal..."    |
-| `--layout`, `-l`       | Define which layout you want to use (check the [layouts](#layouts)) for available options | "comparison"                   |
-| `--saveImg`, `-si`     | Save the created meme to an image                                                         | "wojackmeme_Termeme.jpg"       |
-| `--stroke`, `-s`       | Add a stroke line to the generated text                                                   | 4                              |
-| `--fontfamily`, `-ff`  | Specify a font for the text                                                               | "Fira Code, Arial"             |
-| `--fontColor`, `-fc`   | Choose a hexedecimal color for the text                                                   | "#FFFFFF"                    |
-| `--strokeColor`, `-sc` | Choose a hexadecimal color for the stroke                                                 | "#000000"                    |
-| `--fontSize`, `-fs`    | Change the font size of the text                                                          | 0.05                           |
+| Option          | Description                                                                               | Example                        |
+| --------------- | ----------------------------------------------------------------------------------------- | ------------------------------ |
+| `--input`       | Provide the source image for the meme                                                     | "./layouts/WojackTemplate.jpg" |
+| `--topText`     | The text to display at the top of your meme                                               | "Generating memes!"            |
+| `--bottomText`  | The text to display at the bottom of your meme                                            | "It's not in a terminal..."    |
+| `--layout`      | Define which layout you want to use (check the [layouts](#layouts)) for available options | "comparison"                   |
+| `--saveImg`     | Save the created meme to an image                                                         | "wojackmeme_Termeme.jpg"       |
+| `--stroke`      | Add a stroke line to the generated text                                                   | 4                              |
+| `--fontfamily`  | Specify a font for the text                                                               | "Fira Code, Arial"             |
+| `--fontColor`   | Choose a hexedecimal color for the text                                                   | "#FFFFFF"                    |
+| `--strokeColor` | Choose a hexadecimal color for the stroke                                                 | "#000000"                    |
+| `--fontSize`    | Change the font size of the text                                                          | 0.05                           |
 
 These examples are pulled directly from the `examples/make-meme.js` example.
 
@@ -63,10 +66,10 @@ These examples are pulled directly from the `examples/make-meme.js` example.
 
 You can pass in any of these layouts to the `layout` argument to change how the image is rendered. The main reason for this is to change how the text is rendered onto the image. For example, `classic` is rendered on top/bottom in the center, while `comparison` is rendered on top/bottom on the right side of the image as these are some of the more popular types of meme layouts.
 
-| Template     | Example                                     | Usage                  |
-| ------------ | ------------------------------------------- | ---------------------- |
-| `classic`    | <img src="layouts/SpongebobTemplate.jpg" /> | `layout: "classic"`    |
-| `comparison` | <img src="layouts/WojackTemplate.jpg" />    | `layout: "comparison"` |
+| Template     | Example                                                                           | Usage                  |
+| ------------ | --------------------------------------------------------------------------------- | ---------------------- |
+| `classic`    | <div align="center"><img width="75%" src="layouts/SpongebobTemplate.jpg" /></div> | `layout: "classic"`    |
+| `comparison` | <div align="center"><img width="75%" src="layouts/WojackTemplate.jpg" /></div>    | `layout: "comparison"` |
 
 > [!NOTE]
 > If your image is blurry or heavily pixelated in the terminal, this is due to the underlying `terminal-image` library. I plan to eventually look into improved visuals for terminals outside of iTerm2, but don't worry, this does not affect the actual image quality if you export it.
