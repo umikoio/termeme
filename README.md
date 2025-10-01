@@ -14,10 +14,6 @@ This CLI/library is available on npm:
 npm i --global termeme
 ```
 
-Check out this iTerm2 example:
-
-<img src= "assets/terminal_example.png" />
-
 ### Library
 
 You'll find examples under the `examples/` directory, but if you just want to plug-and-play, here's a minimal blank example:
@@ -44,6 +40,10 @@ termeme --input "layouts/WojackTemplate.jpg" \
 --layout "comparison" --save-img "wojackmeme_termeme.jpg" --stroke 4 \
 --font-family "Fira Code, Arial" --font-color "#FFFFFF" --stroke-color "#000000" --font-size 0.05
 ```
+
+Check out this iTerm2 example:
+
+<img src= "assets/terminal_example.png" />
 
 Beyond that, here's an all-inclusive list of the available options to customize your dream meme:
 
