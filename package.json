@@ -21,7 +21,7 @@
     },
     "files": [
         "index.js",
-        "templates/",
+        "layouts/",
         "examples/"
     ],
     "keywords": [
