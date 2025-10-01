@@ -28,7 +28,26 @@
     "keywords": [
         "image",
         "meme",
-        "memes"
+        "memes",
+        "terminal",
+        "term",
+        "iterm",
+        "shell",
+        "console",
+        "command-line",
+        "img",
+        "pic",
+        "picture",
+        "photo",
+        "ansi",
+        "jpg",
+        "jpeg",
+        "display",
+        "funny",
+        "maker",
+        "creator",
+        "generator",
+        "png"
     ],
     "dependencies": {
         "@napi-rs/canvas": "^0.1.80",

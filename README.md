@@ -14,6 +14,8 @@ This CLI/library is available on npm:
 npm i --global termeme
 ```
 
+No "Graphics Magick", third-party dependencies, or external applications! Plus an easy to use object-based library!
+
 ### Library
 
 You'll find examples under the `examples/` directory, but if you just want to plug-and-play, here's a minimal blank example:
@@ -41,10 +43,6 @@ termeme --input "layouts/WojackTemplate.jpg" \
 --font-family "Fira Code, Arial" --font-color "#FFFFFF" --stroke-color "#000000" --font-size 0.05
 ```
 
-Check out this iTerm2 example:
-
-<img src= "assets/terminal_example.png" />
-
 Beyond that, here's an all-inclusive list of the available options to customize your dream meme:
 
 | Option          | Description                                                                               | Example                        |
@@ -61,6 +59,10 @@ Beyond that, here's an all-inclusive list of the available options to customize 
 | `--fontSize`    | Change the font size of the text                                                          | 0.05                           |
 
 These examples are pulled directly from the `examples/make-meme.js` example.
+
+Here's a small test I ran in iTerm2:
+
+<img src= "assets/terminal_example.png" />
 
 ## Layouts
 
