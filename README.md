@@ -6,10 +6,6 @@
 
 When I say create memes directly in your terminal, I mean it! This meme generator will create your meme without ever leaving your terminal. Termeme is a command-line utility, and library, so feel free to customize as much as you want.
 
-Check out this iTerm2 example:
-
-<img src= "assets/terminal_example.png" />
-
 ## Usage
 
 This CLI/library is available on npm:
@@ -17,6 +13,10 @@ This CLI/library is available on npm:
 ```bash
 npm i --global termeme
 ```
+
+Check out this iTerm2 example:
+
+<img src= "assets/terminal_example.png" />
 
 ### Library
 
