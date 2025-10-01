@@ -1,0 +1,41 @@
+{
+    "name": "termeme",
+    "description": "Create memes directly in your terminal!",
+    "version": "0.1.0",
+    "author": {
+        "name": "Umiko",
+        "email": "ping@umiko.io",
+        "url": "https://github.com/umikoio"
+    },
+    "funding": "https://ko-fi.com/umikoio",
+    "license": "MIT",
+    "repository": "https://github.com/umikoio/termeme",
+    "homepage": "https://github.com/umikoio/termeme",
+    "types": "index.d.ts",
+    "type": "module",
+    "bin": {
+        "termeme": "./index.js"
+    },
+    "engines": {
+        "node": ">=20"
+    },
+    "files": [
+        "index.js",
+        "templates/",
+        "examples/"
+    ],
+    "keywords": [
+        "image",
+        "meme",
+        "memes"
+    ],
+    "dependencies": {
+        "@napi-rs/canvas": "^0.1.80",
+        "gifwrap": "^0.10.1",
+        "terminal-image": "^4.0.0",
+        "yargs": "^18.0.0"
+    },
+    "scripts": {
+        "pretty": "npx prettier --write ."
+    }
+}
