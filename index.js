@@ -15,9 +15,6 @@ import path from "node:path"
 import fs from "node:fs/promises"
 import { createCanvas, loadImage } from "@napi-rs/canvas"
 import terminalImage from "terminal-image"
-import { fileURLToPath } from "node:url"
-import yargs from "yargs"
-import { hideBin } from "yargs/helpers"
 
 const DEFAULTS = {
     topText: "",
@@ -346,7 +343,7 @@ const renderMemeToTerminal = async (inputOrOptions, width) => {
     return meme
 }
 
-export default async function TerminalMeme(
+const TerminalMeme = async (
     arg,
     topText,
     bottomText,
@@ -360,7 +357,7 @@ export default async function TerminalMeme(
     margin,
     fontSize,
     width
-) {
+) => {
     // If first arg is an object, treat it as options; otherwise map positionals to options
     const opts =
         arg && typeof arg === "object" && !Buffer.isBuffer(arg)
@@ -415,135 +412,4 @@ export default async function TerminalMeme(
     return { buffer: buf, meme }
 }
 
-const normalizeFsPath = (p) => {
-    let n = path.normalize(p)
-
-    if (process.platform === "win32") {
-        n = n.toLowerCase()
-    }
-
-    return n
-}
-
-// |--------------------------------|
-//                                  |
-// | Termeme Command-Line Utility   |
-//                                  |
-// |--------------------------------|
-
-// Don't run unless we can verify it's actually being executed from the command line
-const isCli = (meta = import.meta) => {
-    const entry = process.argv[1]
-
-    if (!entry) {
-        return false
-    }
-
-    const me = normalizeFsPath(fileURLToPath(meta.url))
-    const called = normalizeFsPath(path.resolve(entry))
-    return me === called
-}
-
-if (isCli()) {
-    const argv = yargs(hideBin(process.argv))
-        .scriptName("termeme")
-        .usage("$0 -i <input> [-t <topText>] [-b <bottomText>] [options]")
-        .option("input", {
-            alias: "i",
-            type: "string",
-            demandOption: true,
-            describe: "Path to a local image file or layout file"
-        })
-        .option("topText", {
-            alias: "t",
-            type: "string",
-            default: DEFAULTS.topText,
-            describe: "Top caption text"
-        })
-        .option("bottomText", {
-            alias: "b",
-            type: "string",
-            default: DEFAULTS.bottomText,
-            describe: "Bottom caption text"
-        })
-        .option("layout", {
-            alias: "lay",
-            type: "string",
-            choices: ["classic", "comparison"],
-            default: DEFAULTS.layout,
-            describe: "Choose which type of meme layout you want"
-        })
-        .option("width", {
-            alias: "w",
-            type: "number",
-            default: DEFAULTS.width,
-            describe: "Terminal render width (columns)"
-        })
-        .option("saveImg", {
-            alias: "s",
-            type: "string",
-            default: DEFAULTS.saveImg,
-            describe: "Export meme to a file"
-        })
-        .option("noUpper", {
-            alias: "nu",
-            type: "boolean",
-            default: DEFAULTS.noUpper,
-            describe: "Disable uppercase for text"
-        })
-        .option("margin", {
-            alias: "m",
-            type: "number",
-            default: DEFAULTS.margin,
-            describe:
-                "Outer margin as a fraction of image height (0-0.2) (Default 0.05)"
-        })
-        .option("stroke", {
-            alias: "k",
-            type: "number",
-            default: DEFAULTS.stroke,
-            describe: "Outline thickness in pixels (scales with font)"
-        })
-        .option("fontSize", {
-            alias: "fs",
-            type: "number",
-            default: DEFAULTS.fontSize,
-            describe:
-                "Base font size as a fraction of image height (0.02-0.16) (Default 0.1)"
-        })
-        .option("fontFamily", {
-            alias: "ff",
-            type: "string",
-            default: DEFAULTS.fontFamily,
-            describe: "Font family used for text"
-        })
-        .option("fontColor", {
-            alias: "fc",
-            type: "string",
-            default: DEFAULTS.fontColor,
-            describe: "Text fill color (hexadecimal)"
-        })
-        .option("strokeColor", {
-            alias: "sc",
-            type: "string",
-            default: DEFAULTS.strokeColor,
-            describe: "Test outline color (hexadecimal)"
-        })
-        .help().argv
-
-    ;(async () => {
-        try {
-            const buf = await generateMeme(argv)
-            const meme = await renderMemeToTerminal(buf, argv.width)
-            console.log(meme)
-
-            if (argv.saveImg) {
-                await fs.writeFile(argv.saveImg, buf)
-                console.error(`\nSaved image to: ${argv.saveImg}`)
-            }
-        } catch (err) {
-            console.error("Error:", err?.message || err)
-            process.exitCode = 1
-        }
-    })()
-}
+export { DEFAULTS, generateMeme, renderMemeToTerminal, TerminalMeme }

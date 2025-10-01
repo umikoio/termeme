@@ -13,8 +13,9 @@
     "homepage": "https://github.com/umikoio/termeme",
     "types": "index.d.ts",
     "type": "module",
+    "main": "./index.js",
     "bin": {
-        "termeme": "./index.js"
+        "termeme": "./cli.js"
     },
     "engines": {
         "node": ">=20"

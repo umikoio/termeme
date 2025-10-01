@@ -1,4 +1,4 @@
-import TerminalMeme from "../index.js"
+import { TerminalMeme } from "../index.js"
 
 const { meme } = await TerminalMeme({
     input: "layouts/WojackTemplate.jpg",
