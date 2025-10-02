@@ -80,7 +80,7 @@ You can pass in any of these layouts to the `layout` argument to change how the 
 | ----------------- | ----------------------------------------------------------------------------------------- |
 | `classic`         | <div align="center"><img width="60%" src="layouts/SpongebobTemplate.jpg" /></div>         |
 | `comparison`      | <div align="center"><img width="60%" src="layouts/WojackTemplate.jpg" /></div>            |
-| `multicomparison` | <div align="center"><img width="60%" src="layouts/SpongebobFiveTemplate.jpg.jpg" /></div> |
+| `multicomparison` | <div align="center"><img width="60%" src="layouts/SpongebobFiveTemplate.jpg" /></div> |
 
 > [!NOTE]
 > If your image is blurry or heavily pixelated in the terminal, this is due to the underlying `terminal-image` library. I plan to eventually look into improved visuals for terminals outside of iTerm2, but don't worry, this does not affect the actual image quality if you export it.
