@@ -16,9 +16,31 @@ import { DEFAULTS, generateMeme, renderMemeToTerminal } from "./index.js"
     Project: Termeme (https://github.com/umikoio/termeme)
 */
 
+// Help with handling rows in the CLI (for the "multicomparison" layout)
+const rowHelper = (argv) => {
+    // Prefer --rows, but allow individual rows (--row, --row, etc.)
+    let rows = []
+
+    if (Array.isArray(argv.rows) && argv.rows.length) {
+        rows = argv.rows.flatMap((x) =>
+            typeof x === "string" ? x.split(/,(?![^[]*\])/g) : []
+        )
+    } else {
+        rows = [argv.row1, argv.row2, argv.row3, argv.row4, argv.row5].filter(
+            (x) => typeof x === "string"
+        )
+    }
+
+    if (rows.length < 5) {
+        rows = rows.concat(Array(5 - rows.length).fill(""))
+    }
+
+    return rows.slice(0, 5)
+}
+
 const argv = yargs(hideBin(process.argv))
     .scriptName("termeme")
-    .usage("$0 -i <input> [-t <topText>] [-b <bottomText>] [options]")
+    .usage("$0 -i <input> [--layout <type>] [text options] [render options]")
     .option("input", {
         alias: "i",
         type: "string",
@@ -29,20 +51,36 @@ const argv = yargs(hideBin(process.argv))
         alias: "t",
         type: "string",
         default: DEFAULTS.topText,
-        describe: "Top caption text"
+        describe: "Top caption text (classic/comparison)"
     })
     .option("bottomText", {
         alias: "b",
         type: "string",
         default: DEFAULTS.bottomText,
-        describe: "Bottom caption text"
+        describe: "Bottom caption text (classic/comparison)"
     })
     .option("layout", {
         alias: "l",
         type: "string",
-        choices: ["classic", "comparison"],
+        choices: ["classic", "comparison", "multicomparison"],
         default: DEFAULTS.layout,
-        describe: "Choose which type of meme layout you want"
+        describe: "Choose the meme layout"
+    })
+    .option("rows", {
+        type: "array",
+        string: true,
+        describe:
+            "Text for multi-line layouts, in order (repeat --rows or comma-separate)"
+    })
+    .option("row1", { type: "string", describe: "Row 1 text (alt to --rows)" })
+    .option("row2", { type: "string", describe: "Row 2 text" })
+    .option("row3", { type: "string", describe: "Row 3 text" })
+    .option("row4", { type: "string", describe: "Row 4 text" })
+    .option("row5", { type: "string", describe: "Row 5 text" })
+    .option("maxLines", {
+        type: "number",
+        default: DEFAULTS.maxLines ?? 2,
+        describe: "Maximum wrapped lines per box (for all layouts)"
     })
     .option("width", {
         alias: "w",
@@ -98,13 +136,18 @@ const argv = yargs(hideBin(process.argv))
         alias: "sc",
         type: "string",
         default: DEFAULTS.strokeColor,
-        describe: "Test outline color (hexadecimal)"
+        describe: "Text outline color (hexadecimal)"
     })
     .help().argv
 
 ;(async () => {
     try {
-        const buf = await generateMeme(argv)
+        const opts =
+            argv.layout === "multicomparison"
+                ? { ...argv, rows: rowHelper(argv) }
+                : argv
+
+        const buf = await generateMeme(opts)
         const meme = await renderMemeToTerminal(buf, argv.width)
         console.log(meme)
 

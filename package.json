@@ -1,7 +1,7 @@
 {
     "name": "termeme",
     "description": "Create memes directly in your terminal!",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "author": {
         "name": "Umiko",
         "email": "ping@umiko.io",

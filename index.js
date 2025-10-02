@@ -8,7 +8,7 @@
 
 /*
     Author: Umiko (https://github.com/umikoio)
-    Project: Mutation Monitor (https://github.com/umikoio/termeme)
+    Project: Termeme (https://github.com/umikoio/termeme)
 */
 
 import path from "node:path"
@@ -23,13 +23,15 @@ const DEFAULTS = {
     saveImg: false,
     stroke: 5,
     fontFamily:
-        "Impact, 'Arial Black', Arial, Helvetica, sans-serif, 'Fira Code'",
+        "Arial, Impact, 'Fira Code', 'Arial Black', Helvetica, sans-serif",
     fontColor: "#ffffff",
     strokeColor: "#000000",
     noUpper: false,
     margin: 0.05,
     fontSize: 0.1,
-    width: Math.max(40, Math.min(100, process.stdout?.columns || 80))
+    width: Math.max(40, Math.min(100, process.stdout?.columns || 80)),
+    maxLines: 2,
+    rows: [] // Now supports multiple rows for comparison memes
 }
 
 const withDefaults = (opts) => {
@@ -42,9 +44,16 @@ const assumeMimeFromName = (incomingMime) => {
         return "image/png"
     }
 
+    const safeExtensions = {
+        ".jpg": "image/jpeg",
+        ".jpeg": "image/jpeg",
+        ".png": "image/png",
+        ".gif": "image/gif"
+    }
+
     // Attempt to get the file extension, return accordingly
     const ext = path.extname(incomingMime).toLowerCase()
-    return ext === ".jpg" || ext === ".jpeg" ? "image/jpeg" : "image/png"
+    return safeExtensions[ext] || "image/png"
 }
 
 // Gather image buffer data before rendering to terminal
@@ -130,6 +139,8 @@ const drawCaption = (
 ) => {
     ctx.textAlign = "center"
     ctx.textBaseline = "top"
+    ctx.lineJoin = "round"
+    ctx.miterLimit = 2
 
     // Specific caption centered within a rectangle
     // Mainly built handle additional layouts (mainly `comparison` for now)
@@ -208,11 +219,11 @@ const generateMeme = async (options) => {
         1,
         Math.round((argv.stroke || 6) * (baseFont / 48))
     ) // scale from ~48px baseline
-    const maxLines = Math.max(1, argv.maxLines)
+    const maxLines = Math.max(1, argv.maxLines ?? DEFAULTS.maxLines)
     const boxWidth = W - margin * 2
 
     // Font and colors
-    const fontFamily = argv.fontFamily || DEFAULTS.font.fontFamily
+    const fontFamily = argv.fontFamily || DEFAULTS.fontFamily
     const fillColor = argv.fontColor || "#FFFFFF"
     const strokeColor = argv.strokeColor || "#000000"
     ctx.font = `bold ${baseFont}px ${fontFamily}`
@@ -260,6 +271,44 @@ const generateMeme = async (options) => {
                 padding,
                 maxLines
             )
+        }
+    } else if (argv.layout === "multicomparison") {
+        // Right column split (5 horizontal sections)
+        const splitX = Math.floor(W * 0.5)
+        const rowH = Math.floor(H / 5)
+        const padding = Math.round(Math.min(W - splitX, rowH) * 0.08)
+
+        // Collect 5 strings from the `rows` array, or fallback to row 1..5
+        const rawRows = (
+            Array.isArray(argv.rows) && argv.rows.length
+                ? argv.rows
+                : [argv.row1, argv.row2, argv.row3, argv.row4, argv.row5]
+        ).slice(0, 5)
+
+        for (let i = 0; i < 5; i++) {
+            const rowsText = toUpperMaybe(rawRows[i] || "", argv.noUpper)
+            const rect = {
+                x: splitX,
+                y: i * rowH,
+                w: W - splitX,
+                h: i === 4 ? H - i * rowH : rowH
+            }
+
+            if (rowsText) {
+                drawCaption(
+                    ctx,
+                    rowsText,
+                    null,
+                    null,
+                    lineHeight,
+                    strokePx,
+                    fillColor,
+                    strokeColor,
+                    rect,
+                    padding,
+                    maxLines
+                )
+            }
         }
     } else {
         // The "classic" layout, centered top/bottomText on the image
@@ -375,11 +424,13 @@ const TerminalMeme = async (
                   noUpper: arg.noUpper ?? DEFAULTS.noUpper,
                   margin: arg.margin ?? DEFAULTS.margin,
                   fontSize: arg.fontSize ?? DEFAULTS.fontSize,
-                  width: arg.width
+                  width: arg.width ?? DEFAULTS.width,
+                  maxLines: arg.maxLines ?? DEFAULTS.maxLines,
+                  rows: arg.rows ?? []
               }
             : {
                   // Positional
-                  input: a,
+                  input: arg,
                   topText,
                   bottomText,
                   layout,
@@ -391,7 +442,9 @@ const TerminalMeme = async (
                   noUpper,
                   margin,
                   fontSize,
-                  width
+                  width,
+                  maxLines,
+                  rows: []
               }
 
     if (!opts.input) {
