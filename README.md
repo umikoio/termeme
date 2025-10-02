@@ -4,7 +4,7 @@
   <p>Create memes directly in your terminal!</p>
 </div>
 
-When I say create memes directly in your terminal, I mean it! This meme generator will create your meme without ever leaving your terminal. Termeme is a command-line utility, and library, so feel free to customize as much as you want.
+When I say create memes directly in your terminal, I mean it! This meme generator will create your meme without ever leaving your terminal. Termeme is a command-line utility, and library, so feel free to customize as much as you want. And don't worry, there's no watermark!
 
 ## Usage
 
