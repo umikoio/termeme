@@ -57,15 +57,15 @@ Beyond that, here's an all-inclusive list of the available options to customize 
 | Option          | Description                                                                               | Example                           |
 | --------------- | ----------------------------------------------------------------------------------------- | --------------------------------- |
 | `--input`       | Provide the source image for the meme                                                     | "./layouts/WojackTemplate.jpg"    |
-| `--topText`     | The text to display at the top of your meme                                               | "Generating memes!"               |
-| `--bottomText`  | The text to display at the bottom of your meme                                            | "It's not in a terminal..."       |
+| `--top-text`     | The text to display at the top of your meme                                               | "Generating memes!"               |
+| `--bottom-text`  | The text to display at the bottom of your meme                                            | "It's not in a terminal..."       |
 | `--layout`      | Define which layout you want to use (check the [layouts](#layouts)) for available options | "comparison"                      |
-| `--saveImg`     | Save the created meme to an image                                                         | "wojackmeme_Termeme.jpg"          |
+| `--save-img`     | Save the created meme to an image                                                         | "wojackmeme_Termeme.jpg"          |
 | `--stroke`      | Add a stroke line to the generated text                                                   | 4                                 |
-| `--fontfamily`  | Specify a font for the text                                                               | "Fira Code, Arial"                |
-| `--fontColor`   | Choose a hexedecimal color for the text                                                   | "#FFFFFF"                       |
-| `--strokeColor` | Choose a hexadecimal color for the stroke                                                 | "#000000"                       |
-| `--fontSize`    | Change the font size of the text                                                          | 0.05                              |
+| `--font-family`  | Specify a font for the text                                                               | "Fira Code, Arial"                |
+| `--font-color`   | Choose a hexedecimal color for the text                                                   | "#FFFFFF"                       |
+| `--stroke-color` | Choose a hexadecimal color for the stroke                                                 | "#000000"                       |
+| `--font-size`    | Change the font size of the text                                                          | 0.05                              |
 | `--rows`        | Text for multi-line layouts                                                               | "One" "Two" "Three" "Four" "Five" |
 
 Here's a small test I ran in iTerm2:
