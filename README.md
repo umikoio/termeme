@@ -6,6 +6,17 @@
 
 When I say create memes directly in your terminal, I mean it! This meme generator will create your meme without ever leaving your terminal. Termeme is a command-line utility, and library, so feel free to customize as much as you want. And don't worry, there's no watermark!
 
+> [!IMPORTANT]
+> It's officially Hacktoberfest! For anyone looking to submit issues, pull requests, or any other contributions, feel free to submit here! This project has way more formats that could be implemented (memes are infinite), so feel free to contribute! I've added a few issues myself if you want to tackle those, but you can also add other features you think would be interesting.
+
+NOTE: This is a small project, so a contribution guide isn't explicilty set. All I ask is that you create an issue before you create a pull request. Also, there is a provided `.prettierrc` config, you can run this using the following command:
+
+```bash
+npm run pretty
+```
+
+If you make any updates, please also update the `index.d.ts` types file accordingly. This isn't required, but it would help me a lot with getting a new release out quicker.
+
 ## Usage
 
 This CLI/library is available on npm:
