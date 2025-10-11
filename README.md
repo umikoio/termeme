@@ -65,19 +65,19 @@ termeme --input "layouts/SpongebobFiveTemplate.jpg" \
 
 Beyond that, here's an all-inclusive list of the available options to customize your dream meme:
 
-| Option          | Description                                                                               | Example                           |
-| --------------- | ----------------------------------------------------------------------------------------- | --------------------------------- |
-| `--input`       | Provide the source image for the meme                                                     | "./layouts/WojackTemplate.jpg"    |
+| Option           | Description                                                                               | Example                           |
+| ---------------- | ----------------------------------------------------------------------------------------- | --------------------------------- |
+| `--input`        | Provide the source image for the meme                                                     | "./layouts/WojackTemplate.jpg"    |
 | `--top-text`     | The text to display at the top of your meme                                               | "Generating memes!"               |
 | `--bottom-text`  | The text to display at the bottom of your meme                                            | "It's not in a terminal..."       |
-| `--layout`      | Define which layout you want to use (check the [layouts](#layouts)) for available options | "comparison"                      |
+| `--layout`       | Define which layout you want to use (check the [layouts](#layouts)) for available options | "comparison"                      |
 | `--save-img`     | Save the created meme to an image                                                         | "wojackmeme_Termeme.jpg"          |
-| `--stroke`      | Add a stroke line to the generated text                                                   | 4                                 |
+| `--stroke`       | Add a stroke line to the generated text                                                   | 4                                 |
 | `--font-family`  | Specify a font for the text                                                               | "Fira Code, Arial"                |
 | `--font-color`   | Choose a hexedecimal color for the text                                                   | "#FFFFFF"                       |
 | `--stroke-color` | Choose a hexadecimal color for the stroke                                                 | "#000000"                       |
 | `--font-size`    | Change the font size of the text                                                          | 0.05                              |
-| `--rows`        | Text for multi-line layouts                                                               | "One" "Two" "Three" "Four" "Five" |
+| `--rows`         | Text for multi-line layouts                                                               | "One" "Two" "Three" "Four" "Five" |
 
 Here's a small test I ran in iTerm2:
 
@@ -87,10 +87,10 @@ Here's a small test I ran in iTerm2:
 
 You can pass in any of these layouts to the `layout` argument to change how the image is rendered. The main reason for this is to change how the text is rendered onto the image. For example, `classic` is rendered on top/bottom in the center, while `comparison` is rendered on top/bottom on the right side of the image as these are some of the more popular types of meme layouts.
 
-| Layout            | Example                                                                                   |
-| ----------------- | ----------------------------------------------------------------------------------------- |
-| `classic`         | <div align="center"><img width="60%" src="layouts/SpongebobTemplate.jpg" /></div>         |
-| `comparison`      | <div align="center"><img width="60%" src="layouts/WojackTemplate.jpg" /></div>            |
+| Layout            | Example                                                                               |
+| ----------------- | ------------------------------------------------------------------------------------- |
+| `classic`         | <div align="center"><img width="60%" src="layouts/SpongebobTemplate.jpg" /></div>     |
+| `comparison`      | <div align="center"><img width="60%" src="layouts/WojackTemplate.jpg" /></div>        |
 | `multicomparison` | <div align="center"><img width="60%" src="layouts/SpongebobFiveTemplate.jpg" /></div> |
 
 > [!NOTE]

@@ -51,7 +51,6 @@
     ],
     "dependencies": {
         "@napi-rs/canvas": "^0.1.80",
-        "gifwrap": "^0.10.1",
         "terminal-image": "^4.0.0",
         "yargs": "^18.0.0"
     },
